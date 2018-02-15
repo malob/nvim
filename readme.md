@@ -37,6 +37,11 @@ Additionlly, the following packages must be installed using `stack`:
 stack install ghc-mod hlint hindent stylish-haskell
 ```
 
+On Ubuntu 16.04 the intero-neovim also requires an additional dependency:
+```bash
+sudo apt install libtinfo-dev
+```
+
 Finally the deoplete.nvim plugin requires the `neovim` Python 3 package.
 ```bash
 pip3 install neovim
