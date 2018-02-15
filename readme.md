@@ -51,7 +51,6 @@ pip3 install neovim
 Clone this repo to the correct location:
 ```bash
 rm -r ~/.config/nvim
-mkdir ~/.config/nvim
 cd ~/.config
 git clone --recursive https://github.com/malob/nvim.git
 ```
