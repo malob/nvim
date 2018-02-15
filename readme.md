@@ -23,16 +23,16 @@ Plugins are managed using [Pathogen](https://github.com/tpope/vim-pathogen).
 	* [goyo.vim](https://github.com/junegunn/goyo.vim): Distraction-free writing in Vim
 	* [vim-markdown](https://github.com/gabrielelana/vim-markdown): Markdown vim mode
 
-# Installation Instructions
+# Installation instructions
 
 ## Requirements
-In order for the Haskell plugins to work correctly [stack](https://docs.haskellstack.org/en/stable/README/) must be installed.
+In order for the Haskell plugins to work correctly [stack](https://docs.haskellstack.org/en/stable/README/) must be installed. (We're using `--resolver lts-9.21` since one of the packages we need to install isn't on the current lts.)
 ```bash
 curl -sSL https://get.haskellstack.org/ | sh
-stack setup
+stack setup --resolver lts-9.21
 ```
 
-Additionlly, the following tools must be installed using `stack`:
+Additionlly, the following packages must be installed using `stack`:
 ```bash
 stack install ghc-mod hlint hindent stylish-haskell
 ```
