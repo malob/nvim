@@ -20,7 +20,7 @@ set expandtab 		" Convert tabs to spaces
 set tabstop=2
 set shiftwidth=2
 
-" Alt-{hjkl} for navigating panes
+" Ctr-{hjkl} for navigating panes
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
