@@ -20,6 +20,9 @@ set expandtab 		" Convert tabs to spaces
 set tabstop=2
 set shiftwidth=2
 
+" Line break behavor
+set linebreak " soft wraps on words not individual chars
+
 " Ctr-{hjkl} for navigating panes
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
@@ -112,7 +115,7 @@ augroup END
 " Haskell competions using neco-ghc config
 " https://github.com/eagletmt/neco-ghc
 let g:haskellmode_completion_ghc = 0	" Disable haskell-vim omnifunc
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc 
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 let g:necoghc_enable_detailed_browse = 1
 
 
@@ -120,7 +123,21 @@ let g:necoghc_enable_detailed_browse = 1
 " WRITING AND MARKDOWN CONFIG
 " ===========================
 
+" Some basic writing features
+autocmd BufWritePre *.md :%s/\s\+$//e " removes trailing whitespace
+
 " vim-markdown config
 " https://github.com/plasticboy/vim-markdown
 let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_new_list_item_indent = 2
 set conceallevel=2
+
+" vim-pencil config
+" https://github.com/reedes/vim-pencil
+let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+let g:airline_section_x = '%{PencilMode()}'
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+augroup END

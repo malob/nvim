@@ -20,8 +20,9 @@ Plugins are managed using [Pathogen](https://github.com/tpope/vim-pathogen).
     * [vim-hintent](https://github.com/alx741/vim-hindent): Integrates with [hindent](https://github.com/chrisdone/hindent) so every time you save a Haskell source file it gets automatically prettified
     * [vim-stylishask](https://github.com/alx741/vim-stylishask): Integrates with [stylish-haskell](https://github.com/jaspervdj/stylish-haskell) so every time you save a Haskell source file it gets automatically prettified
 * Writing/Markdown
-	* [goyo.vim](https://github.com/junegunn/goyo.vim): Distraction-free writing in Vim
-	* [vim-markdown](https://github.com/gabrielelana/vim-markdown): Markdown vim mode
+  * [goyo.vim](https://github.com/junegunn/goyo.vim): Distraction-free writing in Vim
+  * [vim-markdown](https://github.com/gabrielelana/vim-markdown): Markdown vim mode
+  * [vim-pencil](https://github.com/reedes/vim-pencil): For better navigation with soft linebreaks, and other nice things for writing.
 
 # Installation instructions
 
