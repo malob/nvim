@@ -40,3 +40,9 @@
 [submodule "bundle/vim-markdown"]
 	path = bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
+[submodule "bundle/vim-pencil"]
+	path = bundle/vim-pencil
+	url = https://github.com/reedes/vim-pencil
+[submodule "bundle/vim-wheel"]
+	path = bundle/vim-wheel
+	url = https://github.com/reedes/vim-wheel.git
