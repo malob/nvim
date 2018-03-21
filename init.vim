@@ -111,6 +111,7 @@ augroup interoMaps
   " Prompts you to enter targets (no silent):
   au FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
 augroup END
+autocmd VimLeave *.hs call intero#process#kill()
 
 " Haskell competions using neco-ghc config
 " https://github.com/eagletmt/neco-ghc
