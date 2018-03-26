@@ -46,3 +46,6 @@
 [submodule "bundle/vim-wheel"]
 	path = bundle/vim-wheel
 	url = https://github.com/reedes/vim-wheel.git
+[submodule "bundle/tabular"]
+	path = bundle/tabular
+	url = https://github.com/godlygeek/tabular.git
