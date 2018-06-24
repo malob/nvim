@@ -2,7 +2,6 @@
 execute pathogen#infect()
 filetype plugin indent on
 
-
 " ==============================
 " GENERAL UI AND BEHAVIOR CONFIG
 " ==============================
@@ -47,6 +46,23 @@ let g:deoplete#enable_at_startup = 1
 " https://github.com/ervandew/supertab
 let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 
+" Ale config
+" https://github.com/w0rp/ale
+let g:ale_linters = {
+\   'haskell': ['stack-ghc-mod', 'hlint'],
+\}
+let g:ale_fixers = {
+\ 'puppet': ['puppetlint']
+\}
+let g:ale_fix_on_save = 1
+let g:ale_change_sign_column_color = 1
+
+
+" UltiSnips config
+" https://github.com/SirVer/ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " ==============
 " HASKELL CONFIG
@@ -63,13 +79,6 @@ let g:haskell_indent_after_bare_where = 2
 let g:haskell_indent_do = 3
 let g:haskell_indent_in = 1
 let g:haskell_indent_guard = 2
-
-" Ale linter config
-" https://github.com/w0rp/ale
-let g:ale_linters = {
-\   'haskell': ['stack-ghc-mod', 'hlint'],
-\}
-let g:ale_change_sign_column_color = 1
 
 " Intero config
 " https://github.com/parsonsmatt/intero-neovim
@@ -125,7 +134,7 @@ let g:necoghc_enable_detailed_browse = 1
 " ===========================
 
 " Some basic writing features
-autocmd BufWritePre *.md :%s/\s\+$//e " removes trailing whitespace
+autocmd BufWritePre *.* :%s/\s\+$//e " removes trailing whitespace
 
 " vim-markdown config
 " https://github.com/plasticboy/vim-markdown
@@ -142,3 +151,4 @@ augroup pencil
   autocmd FileType markdown,mkd call pencil#init()
   autocmd FileType text         call pencil#init()
 augroup END
+
