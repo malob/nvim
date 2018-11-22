@@ -1,9 +1,6 @@
 [submodule "bundle/haskell-vim"]
 	path = bundle/haskell-vim
 	url = https://github.com/neovimhaskell/haskell-vim.git
-[submodule "bundle/vim-colors-solarized"]
-	path = bundle/vim-colors-solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
 [submodule "bundle/intero-neovim"]
 	path = bundle/intero-neovim
 	url = https://github.com/parsonsmatt/intero-neovim.git
@@ -58,3 +55,27 @@
 [submodule "bundle/vim-snippets"]
 	path = bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
+[submodule "bundle/vim-pathogen"]
+	path = bundle/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen.git
+[submodule "bundle/LanguageClient-neovim"]
+	path = bundle/LanguageClient-neovim
+	url = https://github.com/autozimu/LanguageClient-neovim.git
+[submodule "bundle/neco-vim"]
+	path = bundle/neco-vim
+	url = https://github.com/Shougo/neco-vim.git
+[submodule "bundle/NeoSolarized"]
+	path = bundle/NeoSolarized
+	url = https://github.com/icymind/NeoSolarized.git
+[submodule "bundle/vim-gitgutter"]
+	path = bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "bundle/vim-fugitive"]
+	path = bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "bundle/denite.nvim"]
+	path = bundle/denite.nvim
+	url = https://github.com/Shougo/denite.nvim.git
+[submodule "bundle/vim-fish"]
+	path = bundle/vim-fish
+	url = https://github.com/dag/vim-fish.git

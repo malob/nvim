@@ -1,3 +1,5 @@
+**Warning: Readme is super out of date**
+
 This is a repo of my [NeoVim](https://neovim.io) config files.
 
 # Plugins
@@ -5,14 +7,21 @@ Plugins are managed using [Pathogen](https://github.com/tpope/vim-pathogen).
 
 ## Included plugins
 * General
-  * [vim-colors-solazired](https://github.com/altercation/vim-colors-solarized): Solarized color scheme
-  * [vim-airline](https://github.com/vim-airline/vim-airline): Status bar
+  * [NeoSolarized](https://github.com/icymind/NeoSolarized): A fixed solarized colorscheme for better truecolor support
+  * [tabular](https://github.com/godlygeek/tabular): For text filtering and alignment
+  * [vim-airline](https://github.com/vim-airline/vim-airline): Statusline
   * [vim-airline-themes](https://github.com/vim-airline/vim-airline-themes): Themes for vim-airline
-  * [vim-surround](https://github.com/tpope/vim-surround): Easily delete, change and add surrounding pairs
+  * [vim-fugitive](https://github.com/tpope/vim-fugitive): Git wapper
+  * [vim-gitgutter](https://github.com/airblade/vim-gitgutter): Shows diff in signcolumn and stages/undoes hunks
+  * [vim-surround](https://github.com/tpope/vim-surround): To easily delete, change and add surrounding pairs
 * Coding
   * [ale](https://github.com/w0rp/ale): Asynchronous lint engine
   * [deoplete.nvim](https://github.com/Shougo/deoplete.nvim): Asynchronous completion framework
-  * [supertab](https://github.com/ervandew/supertab): Perform all your vim insert mode completions with Tab
+  * [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim) Language Server Protocol (LSP) support for vim and neovim
+  * [supertab](https://github.com/ervandew/supertab): For tabing through completions
+  * [utilsnips](https://github.com/sirver/UltiSnips): Snippets utility that integrates with Deoplete
+  * [vim-puppet](https://github.com/rodjek/vim-puppet): Niceties for working with Puppet files
+  * [vim-snippets](https://github.com/honza/vim-snippets): Large collection of snippets for use with UtilSnips
   * Haskell specific
     * [haskell-vim](https://github.com/neovimhaskell/haskell-vim): Syntax highlighting and indentation for Haskell and Cabal
     * [intero-neovim](https://github.com/parsonsmatt/intero-neovim): A neovim plugin for [Intero](https://commercialhaskell.github.io/intero/), forked from ghcmod-vim.
@@ -20,7 +29,7 @@ Plugins are managed using [Pathogen](https://github.com/tpope/vim-pathogen).
     * [vim-hintent](https://github.com/alx741/vim-hindent): Integrates with [hindent](https://github.com/chrisdone/hindent) so every time you save a Haskell source file it gets automatically prettified
     * [vim-stylishask](https://github.com/alx741/vim-stylishask): Integrates with [stylish-haskell](https://github.com/jaspervdj/stylish-haskell) so every time you save a Haskell source file it gets automatically prettified
 * Writing/Markdown
-  * [goyo.vim](https://github.com/junegunn/goyo.vim): Distraction-free writing in Vim
+  * [goyo.vim](https://github.com/junegunn/goyo.vim): Distraction-free writing mode for Vim
   * [vim-markdown](https://github.com/gabrielelana/vim-markdown): Markdown vim mode
   * [vim-pencil](https://github.com/reedes/vim-pencil): For better navigation with soft linebreaks, and other nice things for writing.
 

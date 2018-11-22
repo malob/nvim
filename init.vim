@@ -1,68 +1,127 @@
+set encoding=utf-8
+scriptencoding utf-8
+
+" ================
+" BASIC VIM CONFIG
+" ================
+
+set updatetime=100
+let mapleader = '`'
+set autochdir
+
 " Package manager initialization
+runtime bundle/vim-pathogen/autoload/pathogen.vim " so that Pathogen can live in bundle folder
 execute pathogen#infect()
 filetype plugin indent on
 
-" ==============================
-" GENERAL UI AND BEHAVIOR CONFIG
-" ==============================
-
 " Setup color scheme
-colorscheme solarized
+set termguicolors        " truecolor support
+colorscheme NeoSolarized " modified Solazized theme for better truecolor support
 set background=dark
 
 " UI settings
-set number		" show line numbers
-set cursorline		" highlight current line
+set number		       " show line numbers
+set cursorline       " highlight current line
+set signcolumn=yes   " always display sign column
+set linebreak        " soft wraps on words not individual chars
+set noshowmode
 
 " Tab behavior
-set expandtab 		" Convert tabs to spaces
+set expandtab 	 " Convert tabs to spaces
 set tabstop=2
 set shiftwidth=2
 
-" Line break behavor
-set linebreak " soft wraps on words not individual chars
+" NeoVim terminal
+augroup neovimTerm
+  au TermOpen * if &buftype == 'terminal' | :set nonumber | :set signcolumn=no | endif " no signcolum or line numebers in terminal
+augroup END
+tnoremap <ESC> <C-\><C-n>                                        " use ESC to enter normal mode in terminal
 
-" Ctr-{hjkl} for navigating panes
-tnoremap <C-h> <C-\><C-n><C-w>h
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-l> <C-\><C-n><C-w>l
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" Tabs and panes config
+execute 'source' '~/.config/nvim/tabs-and-panes.vim'
 
-" Airline config
+" Disable arrow keys in insert mode
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+
+" ==========
+" UI PLUGINS
+" ==========
+
+" Airline statusline
 " https://github.com/vim-airline/vim-airline
-let g:airline_theme = 'solarized'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#ale#enabled = 1
+execute 'source' '~/.config/nvim/airline-config.vim'
 
-" Deoplete autocompletion engine config
+" GitGutter
+" https://github.com/airblade/vim-gitgutter
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_sign_added = '┃'
+let g:gitgutter_sign_modified = g:gitgutter_sign_added
+let g:gitgutter_sign_removed = g:gitgutter_sign_added
+
+
+" ======================================
+" GENERAL COMPLETION AND LINTING PLUGINS
+" ======================================
+
+" ALE asyncronous linter config
+" https://github.com/w0rp/ale
+execute 'source' '~/.config/nvim/ale-config.vim'
+
+" Deoplete autocompletion engine
 " https://github.com/Shougo/deoplete.nvim
 let g:deoplete#enable_at_startup = 1
 
-" Supertap config
+" LanguageClient
+" https://github.com/autozimu/LanguageClient-neovim
+let g:LanguageClient_diagnosticsEnable=1
+let g:LanguageClient_serverCommands = {
+  \ 'lua': ['/usr/local/bin/lua-lsp'],
+  \ 'haskell': ['/Users/malo/.local/bin/hie-wrapper']
+\ }
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
+map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
+map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
+map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
+map <Leader>lb :call LanguageClient#textDocument_references()<CR>
+map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
+map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
+
+" Supertap (tab through autocompletions)
 " https://github.com/ervandew/supertab
 let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 
-" Ale config
-" https://github.com/w0rp/ale
-let g:ale_linters = {
-\   'haskell': ['stack-ghc-mod', 'hlint'],
-\}
-let g:ale_fixers = {
-\ 'puppet': ['puppetlint']
-\}
-let g:ale_fix_on_save = 1
-let g:ale_change_sign_column_color = 1
-
-
 " UltiSnips config
 " https://github.com/SirVer/ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger='<C-j>'
+let g:UltiSnipsJumpForwardTrigger='<c-b>'
+let g:UltiSnipsJumpBackwardTrigger='<c-z>'
+
+
+" ===========================
+" WRITING AND MARKDOWN CONFIG
+" ===========================
+
+" vim-markdown config
+" https://github.com/plasticboy/vim-markdown
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_new_list_item_indent = 2
+set conceallevel=2
+
+" vim-pencil config
+" https://github.com/reedes/vim-pencil
+let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+let g:airline_section_x = '%{PencilMode()}'
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+augroup END
+
 
 " ==============
 " HASKELL CONFIG
@@ -82,73 +141,49 @@ let g:haskell_indent_guard = 2
 
 " Intero config
 " https://github.com/parsonsmatt/intero-neovim
-let g:intero_use_neomake = 0
-augroup interoMaps
-  au!
-  " Maps for intero. Restrict to Haskell buffers so the bindings don't collide.
-
-  " Background process and window management
-  au FileType haskell nnoremap <silent> <leader>is :InteroStart<CR>
-  au FileType haskell nnoremap <silent> <leader>ik :InteroKill<CR>
-
-  " Open intero/GHCi split horizontally
-  au FileType haskell nnoremap <silent> <leader>io :InteroOpen<CR>
-  " Open intero/GHCi split vertically
-  au FileType haskell nnoremap <silent> <leader>iov :InteroOpen<CR><C-W>H
-  au FileType haskell nnoremap <silent> <leader>ih :InteroHide<CR>
-
-  " Reloading (pick one)
-  " Automatically reload on save
-  au BufWritePost *.hs InteroReload
-  " Manually save and reload
-  au FileType haskell nnoremap <silent> <leader>wr :w \| :InteroReload<CR>
-
-  " Load individual modules
-  au FileType haskell nnoremap <silent> <leader>il :InteroLoadCurrentModule<CR>
-  au FileType haskell nnoremap <silent> <leader>if :InteroLoadCurrentFile<CR>
-
-  " Type-related information
-  " Heads up! These next two differ from the rest.
-  au FileType haskell map <silent> <leader>t <Plug>InteroGenericType
-  au FileType haskell map <silent> <leader>T <Plug>InteroType
-  au FileType haskell nnoremap <silent> <leader>it :InteroTypeInsert<CR>
-
-  " Navigation
-  au FileType haskell nnoremap <silent> <leader>jd :InteroGoToDef<CR>
-
-  " Managing targets
-  " Prompts you to enter targets (no silent):
-  au FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
-augroup END
-autocmd VimLeave *.hs call intero#process#kill()
+"let g:intero_use_neomake = 0
+"augroup interoMaps
+"  au!
+"  " Maps for intero. Restrict to Haskell buffers so the bindings don't collide.
+"
+"  " Background process and window management
+"  au FileType haskell nnoremap <silent> <leader>is :InteroStart<CR>
+"  au FileType haskell nnoremap <silent> <leader>ik :InteroKill<CR>
+"
+"  " Open intero/GHCi split horizontally
+"  au FileType haskell nnoremap <silent> <leader>io :InteroOpen<CR>
+"  " Open intero/GHCi split vertically
+"  au FileType haskell nnoremap <silent> <leader>iov :InteroOpen<CR><C-W>H
+"  au FileType haskell nnoremap <silent> <leader>ih :InteroHide<CR>
+"
+"  " Reloading (pick one)
+"  " Automatically reload on save
+"  au BufWritePost *.hs InteroReload
+"  " Manually save and reload
+"  au FileType haskell nnoremap <silent> <leader>wr :w \| :InteroReload<CR>
+"
+"  " Load individual modules
+"  au FileType haskell nnoremap <silent> <leader>il :InteroLoadCurrentModule<CR>
+"  au FileType haskell nnoremap <silent> <leader>if :InteroLoadCurrentFile<CR>
+"
+"  " Type-related information
+"  " Heads up! These next two differ from the rest.
+"  au FileType haskell map <silent> <leader>t <Plug>InteroGenericType
+"  au FileType haskell map <silent> <leader>T <Plug>InteroType
+"  au FileType haskell nnoremap <silent> <leader>it :InteroTypeInsert<CR>
+"
+"  " Navigation
+"  au FileType haskell nnoremap <silent> <leader>jd :InteroGoToDef<CR>
+"
+"  " Managing targets
+"  " Prompts you to enter targets (no silent):
+"  au FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
+"augroup END
 
 " Haskell competions using neco-ghc config
 " https://github.com/eagletmt/neco-ghc
 let g:haskellmode_completion_ghc = 0	" Disable haskell-vim omnifunc
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-let g:necoghc_enable_detailed_browse = 1
-
-
-" ===========================
-" WRITING AND MARKDOWN CONFIG
-" ===========================
-
-" Some basic writing features
-autocmd BufWritePre *.* :%s/\s\+$//e " removes trailing whitespace
-
-" vim-markdown config
-" https://github.com/plasticboy/vim-markdown
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_new_list_item_indent = 2
-set conceallevel=2
-
-" vim-pencil config
-" https://github.com/reedes/vim-pencil
-let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
-let g:airline_section_x = '%{PencilMode()}'
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-  autocmd FileType text         call pencil#init()
-augroup END
-
+"augroup necoGHC
+"  autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+"augroup END
+"let g:necoghc_enable_detailed_browse = 1
