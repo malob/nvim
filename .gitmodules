@@ -6,10 +6,10 @@
 	url = https://github.com/parsonsmatt/intero-neovim.git
 [submodule "bundle/vim-airline"]
 	path = bundle/vim-airline
-	url = https://github.com/vim-airline/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
 [submodule "bundle/vim-airline-themes"]
 	path = bundle/vim-airline-themes
-	url = https://github.com/vim-airline/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes.git
 [submodule "bundle/vim-hindent"]
 	path = bundle/vim-hindent
 	url = https://github.com/alx741/vim-hindent.git
@@ -39,7 +39,7 @@
 	url = https://github.com/plasticboy/vim-markdown.git
 [submodule "bundle/vim-pencil"]
 	path = bundle/vim-pencil
-	url = https://github.com/reedes/vim-pencil
+	url = https://github.com/reedes/vim-pencil.git
 [submodule "bundle/vim-wheel"]
 	path = bundle/vim-wheel
 	url = https://github.com/reedes/vim-wheel.git
