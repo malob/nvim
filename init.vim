@@ -78,10 +78,18 @@ let g:deoplete#enable_at_startup = 1
 " LanguageClient
 " https://github.com/autozimu/LanguageClient-neovim
 let g:LanguageClient_diagnosticsEnable=1
-let g:LanguageClient_serverCommands = {
-  \ 'lua': ['/usr/local/bin/lua-lsp'],
-  \ 'haskell': ['/Users/malo/.local/bin/hie-wrapper']
-\ }
+if has('linux')
+  let g:LanguageClient_serverCommands = {
+    \ 'lua': ['/usr/local/bin/lua-lsp'],
+    \ 'haskell': ['/home/malo/.local/bin/hie-wrapper']
+  \ }
+else
+  let g:LanguageClient_serverCommands = {
+    \ 'lua': ['/usr/local/bin/lua-lsp'],
+    \ 'haskell': ['/Users/malo/.local/bin/hie-wrapper']
+  \ }
+endif
+
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
 map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
