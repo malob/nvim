@@ -6,7 +6,8 @@ scriptencoding utf-8
 " Restrict linters for some file types
 let g:ale_linters = {
   \ 'haskell': [],
-  \ 'javascript': []
+  \ 'javascript': [],
+  \ 'lua': []
 \ }
 
 " Fixers

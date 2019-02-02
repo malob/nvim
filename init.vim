@@ -5,9 +5,11 @@ scriptencoding utf-8
 " BASIC VIM CONFIG
 " ================
 
-set updatetime=100
 let mapleader = '`'
-set autochdir
+
+set runtimepath+=/usr/local/opt/fzf " add fzf functionality installed by brew
+set updatetime=750                  " number of ms before changes are writted to swp file
+set autochdir                       " automatically change working directory for each buffer
 
 " Package manager initialization
 runtime bundle/vim-pathogen/autoload/pathogen.vim " so that Pathogen can live in bundle folder
@@ -22,7 +24,7 @@ set background=dark
 " UI settings
 set cursorline       " highlight current line
 set linebreak        " soft wraps on words not individual chars
-set noshowmode
+set noshowmode       " don't show --INSERT-- etc.
 
 " Tab behavior
 set expandtab 	 " Convert tabs to spaces
@@ -80,7 +82,6 @@ let g:deoplete#enable_at_startup = 1
 
 " LanguageClient
 " https://github.com/autozimu/LanguageClient-neovim
-let g:LanguageClient_diagnosticsEnable=1
 if has('linux')
   let g:LanguageClient_serverCommands = {
     \ 'haskell': ['/home/malo/.local/bin/hie-wrapper'],
@@ -94,6 +95,33 @@ else
     \ 'lua': ['/usr/local/bin/lua-lsp'],
   \ }
 endif
+
+let g:LanguageClient_diagnosticsDisplay = {
+  \ 1: {
+  \     'name': 'Error',
+  \     'texthl': 'ALEError',
+  \     'signText': '',
+  \     'signTexthl': 'ALEErrorSign',
+  \ },
+  \ 2:  {
+  \     'name': 'Warning',
+  \     'texthl': 'ALEWarning',
+  \     'signText': '',
+  \     'signTexthl': 'ALEWarningSign',
+  \ },
+  \ 3:  {
+  \     'name': 'Information',
+  \     'texthl': 'ALEInfo',
+  \     'signText': '\uF05A',
+  \     'signTexthl': 'ALEInfoSign',
+  \ },
+  \ 4:  {
+  \     'name': 'Hint',
+  \     'texthl': 'ALEInfo',
+  \     'signText': '➤',
+  \     'signTexthl': 'ALEInfoSign',
+  \ },
+\ }
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
@@ -154,6 +182,7 @@ let g:haskell_indent_guard = 2
 
 " Intero config
 " https://github.com/parsonsmatt/intero-neovim
+let g:intero_start_immediately = 0
 "let g:intero_use_neomake = 0
 "augroup interoMaps
 "  au!
@@ -192,11 +221,3 @@ let g:haskell_indent_guard = 2
 "  " Prompts you to enter targets (no silent):
 "  au FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
 "augroup END
-
-" Haskell competions using neco-ghc config
-" https://github.com/eagletmt/neco-ghc
-let g:haskellmode_completion_ghc = 0	" Disable haskell-vim omnifunc
-"augroup necoGHC
-"  autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-"augroup END
-"let g:necoghc_enable_detailed_browse = 1
