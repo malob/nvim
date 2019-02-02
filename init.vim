@@ -20,9 +20,7 @@ colorscheme NeoSolarized " modified Solazized theme for better truecolor support
 set background=dark
 
 " UI settings
-set number		       " show line numbers
 set cursorline       " highlight current line
-set signcolumn=yes   " always display sign column
 set linebreak        " soft wraps on words not individual chars
 set noshowmode
 
@@ -32,10 +30,11 @@ set tabstop=2
 set shiftwidth=2
 
 " NeoVim terminal
-augroup neovimTerm
-  au TermOpen * if &buftype == 'terminal' | :set nonumber | :set signcolumn=no | endif " no signcolum or line numebers in terminal
+augroup neovimTerm " enable signcolumn and line numbers in all buffers except terminal
+  au TermOpen * if &buftype == 'terminal' | :set nonumber | :set signcolumn=no | endif
+  au BufEnter * if &buftype != 'terminal' | :set number | :set signcolumn=yes | endif
 augroup END
-tnoremap <ESC> <C-\><C-n>                                        " use ESC to enter normal mode in terminal
+tnoremap <ESC> <C-\><C-n> " use ESC to enter normal mode in terminal
 
 " Tabs and panes config
 execute 'source' '~/.config/nvim/tabs-and-panes.vim'
@@ -62,6 +61,10 @@ let g:gitgutter_sign_added = '┃'
 let g:gitgutter_sign_modified = g:gitgutter_sign_added
 let g:gitgutter_sign_removed = g:gitgutter_sign_added
 
+" vim-javascript syntax highlighting
+" https://github.com/pangloss/vim-javascript
+let g:javascript_plugin_jsdoc = 1
+
 
 " ======================================
 " GENERAL COMPLETION AND LINTING PLUGINS
@@ -80,13 +83,15 @@ let g:deoplete#enable_at_startup = 1
 let g:LanguageClient_diagnosticsEnable=1
 if has('linux')
   let g:LanguageClient_serverCommands = {
-    \ 'lua': ['/usr/local/bin/lua-lsp'],
-    \ 'haskell': ['/home/malo/.local/bin/hie-wrapper']
+    \ 'haskell': ['/home/malo/.local/bin/hie-wrapper'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'lua': ['/usr/local/bin/lua-lsp']
   \ }
 else
   let g:LanguageClient_serverCommands = {
+    \ 'haskell': ['/Users/malo/.local/bin/hie-wrapper'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
     \ 'lua': ['/usr/local/bin/lua-lsp'],
-    \ 'haskell': ['/Users/malo/.local/bin/hie-wrapper']
   \ }
 endif
 
