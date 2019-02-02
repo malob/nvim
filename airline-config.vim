@@ -6,7 +6,7 @@ scriptencoding utf-8
 " General configuration
 let g:airline_theme = 'solarized'
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]' " don't show file encoding unless it's something unexpected
-let g:airline#extensions#hunks#non_zero_only = 0             " don't show git change stats unless there are some
+let g:airline#extensions#hunks#non_zero_only = 1             " don't show git change stats unless there are some
 let g:airline_skip_empty_sections = 1                        " don't show sections if they're empty
 
 " Tabline configuration

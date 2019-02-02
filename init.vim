@@ -31,13 +31,6 @@ set expandtab 	 " Convert tabs to spaces
 set tabstop=2
 set shiftwidth=2
 
-" NeoVim terminal
-augroup neovimTerm " enable signcolumn and line numbers in all buffers except terminal
-  au TermOpen * if &buftype == 'terminal' | :set nonumber | :set signcolumn=no | endif
-  au BufEnter * if &buftype != 'terminal' | :set number | :set signcolumn=yes | endif
-augroup END
-tnoremap <ESC> <C-\><C-n> " use ESC to enter normal mode in terminal
-
 " Tabs and panes config
 execute 'source' '~/.config/nvim/tabs-and-panes.vim'
 
@@ -79,58 +72,15 @@ execute 'source' '~/.config/nvim/ale-config.vim'
 " Deoplete autocompletion engine
 " https://github.com/Shougo/deoplete.nvim
 let g:deoplete#enable_at_startup = 1
+call deoplete#custom#var('around', {
+\ 'mark_above': '[↑]',
+\ 'mark_below': '[↓]',
+\ 'mark_changes': '[*]',
+\})
 
 " LanguageClient
 " https://github.com/autozimu/LanguageClient-neovim
-if has('linux')
-  let g:LanguageClient_serverCommands = {
-    \ 'haskell': ['/home/malo/.local/bin/hie-wrapper'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'lua': ['/usr/local/bin/lua-lsp']
-  \ }
-else
-  let g:LanguageClient_serverCommands = {
-    \ 'haskell': ['/Users/malo/.local/bin/hie-wrapper'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'lua': ['/usr/local/bin/lua-lsp'],
-  \ }
-endif
-
-let g:LanguageClient_diagnosticsDisplay = {
-  \ 1: {
-  \     'name': 'Error',
-  \     'texthl': 'ALEError',
-  \     'signText': '',
-  \     'signTexthl': 'ALEErrorSign',
-  \ },
-  \ 2:  {
-  \     'name': 'Warning',
-  \     'texthl': 'ALEWarning',
-  \     'signText': '',
-  \     'signTexthl': 'ALEWarningSign',
-  \ },
-  \ 3:  {
-  \     'name': 'Information',
-  \     'texthl': 'ALEInfo',
-  \     'signText': '\uF05A',
-  \     'signTexthl': 'ALEInfoSign',
-  \ },
-  \ 4:  {
-  \     'name': 'Hint',
-  \     'texthl': 'ALEInfo',
-  \     'signText': '➤',
-  \     'signTexthl': 'ALEInfoSign',
-  \ },
-\ }
-
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
-map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
-map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
-map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
-map <Leader>lb :call LanguageClient#textDocument_references()<CR>
-map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
-map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
+execute 'source' '~/.config/nvim/language-client.vim'
 
 " Supertap (tab through autocompletions)
 " https://github.com/ervandew/supertab
