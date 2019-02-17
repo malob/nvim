@@ -6,10 +6,8 @@ scriptencoding utf-8
 " ================
 
 let mapleader = '`'
-
-set runtimepath+=/usr/local/opt/fzf " add fzf functionality installed by brew
-set updatetime=750                  " number of ms before changes are writted to swp file
-set autochdir                       " automatically change working directory for each buffer
+set updatetime=100 " number of ms before changes are writted to swp file
+set autochdir      " automatically change working directory for each buffer
 
 " Package manager initialization
 runtime bundle/vim-pathogen/autoload/pathogen.vim " so that Pathogen can live in bundle folder
@@ -25,6 +23,7 @@ set background=dark
 set cursorline       " highlight current line
 set linebreak        " soft wraps on words not individual chars
 set noshowmode       " don't show --INSERT-- etc.
+set cmdheight=2      " increase site of cmd area
 
 " Tab behavior
 set expandtab 	 " Convert tabs to spaces
@@ -39,6 +38,12 @@ imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
+
+" Reload source on save
+augroup viminit
+  au!
+  autocmd bufwritepost *.vim source $MYVIMRC | echom "Reloaded " $MYVIMRC
+augroup END
 
 
 " ==========
@@ -60,6 +65,9 @@ let g:gitgutter_sign_removed = g:gitgutter_sign_added
 " https://github.com/pangloss/vim-javascript
 let g:javascript_plugin_jsdoc = 1
 
+" denite.vim
+" https://github.com/Shougo/denite.nvim
+noremap <silent> <leader><space> :Denite source<CR>
 
 " ======================================
 " GENERAL COMPLETION AND LINTING PLUGINS
@@ -77,6 +85,11 @@ call deoplete#custom#var('around', {
 \ 'mark_below': '[↓]',
 \ 'mark_changes': '[*]',
 \})
+
+" Echodoc
+" https://github.com/Shougo/echodoc.vim
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'signature'
 
 " LanguageClient
 " https://github.com/autozimu/LanguageClient-neovim

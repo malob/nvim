@@ -4,7 +4,7 @@
 
 " Terminal configuration
 augroup neovimTerm " enable signcolumn and line numbers in all buffers except terminal
-  au TermOpen * if &buftype == 'terminal' | :set nonumber | :set signcolumn=no | endif
+  au TermOpen * if &buftype == 'terminal' | :set nonumber | :set signcolumn=no | :startinsert | endif
   au BufEnter * if &buftype != 'terminal' | :set number | :set signcolumn=yes | else | :startinsert | endif
 augroup END
 tnoremap <ESC> <C-\><C-n> " use ESC to enter normal mode in terminal
@@ -31,13 +31,13 @@ tnoremap <silent> <leader>p <C-\><C-n>:tabprevious<CR>
 
 " Pane creation/destruction
 " new verticle split w/ terminal
-noremap  <silent> <leader>\ <ESC>:vs +term<CR>
-noremap! <silent> <leader>\ <ESC>:vs +term<CR>
-tnoremap <silent> <leader>\ <C-\><C-n>:vs +term<CR>
+noremap  <silent> <leader>\| <ESC>:vs +term<CR>
+noremap! <silent> <leader>\| <ESC>:vs +term<CR>
+tnoremap <silent> <leader>\| <C-\><C-n>:vs +term<CR>
 " new horizontal split w/ terminal
-noremap  <silent> <leader>" <ESC>:split +term<CR>
-noremap! <silent> <leader>" <ESC>:split +term<CR>
-tnoremap <silent> <leader>" <C-\><C-n>:split +term<CR>
+noremap  <silent> <leader>_ <ESC>:split +term<CR>
+noremap! <silent> <leader>_ <ESC>:split +term<CR>
+tnoremap <silent> <leader>_ <C-\><C-n>:split +term<CR>
 " close pane
 noremap  <silent> <leader>x <ESC>:q<CR>
 noremap! <silent> <leader>x <ESC>:q<CR>

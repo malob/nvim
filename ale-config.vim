@@ -7,7 +7,8 @@ scriptencoding utf-8
 let g:ale_linters = {
   \ 'haskell': [],
   \ 'javascript': [],
-  \ 'lua': []
+  \ 'lua': [],
+  \ 'typescript': []
 \ }
 
 " Fixers
