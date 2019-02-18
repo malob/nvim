@@ -1,58 +1,52 @@
-**Warning: Readme is super out of date**
-
 This is a repo of my [NeoVim](https://neovim.io) config files.
+
+Notable features include:
+* Configuration to let you basically replace `tmux` with `nvim`.
+* A pretty great setup for coding TypeScript and plain old JS.
+* A bunch of time tools to make writing really nice.
+* A bunch of nice aesthetic touches.
+
+Below there I've included a bit of documentation and some setup instructions, but the actual `*.vim` files also contain a lot of documentation.
 
 # Plugins
 Plugins are managed using [Pathogen](https://github.com/tpope/vim-pathogen).
 
 ## Included plugins
 * General
+  * [denite.nvim](https://github.com/Shougo/denite.nvim): Very powerful search/action tool for all kinds of sources
   * [NeoSolarized](https://github.com/icymind/NeoSolarized): A fixed solarized colorscheme for better truecolor support
-  * [tabular](https://github.com/godlygeek/tabular): For text filtering and alignment
   * [vim-airline](https://github.com/vim-airline/vim-airline): Statusline
   * [vim-airline-themes](https://github.com/vim-airline/vim-airline-themes): Themes for vim-airline
-  * [vim-fugitive](https://github.com/tpope/vim-fugitive): Git wapper
+* Coding tools
+  * [ale](https://github.com/w0rp/ale): Asynchronous lint engine
+    * If I can't find a good language server, I use ALE for linting/fixing.
+  * [deoplete.nvim](https://github.com/Shougo/deoplete.nvim): Asynchronous completion framework
+    * Handles all my autocompletion, integrates with LanguageClient-neovim.
+  * [echodoc.vim](https://github.com/Shougo/echodoc.vim): Displays function signatures from completions in the command line (sometimes)
+  * [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim) Language Server Protocol (LSP) support
+    * If there is a good language server available, then this package will handle all of the things (except syntax highlighting).
   * [vim-gitgutter](https://github.com/airblade/vim-gitgutter): Shows diff in signcolumn and stages/undoes hunks
   * [vim-surround](https://github.com/tpope/vim-surround): To easily delete, change and add surrounding pairs
-* Coding
-  * [ale](https://github.com/w0rp/ale): Asynchronous lint engine
-  * [deoplete.nvim](https://github.com/Shougo/deoplete.nvim): Asynchronous completion framework
-  * [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim) Language Server Protocol (LSP) support for vim and neovim
-  * [supertab](https://github.com/ervandew/supertab): For tabing through completions
-  * [utilsnips](https://github.com/sirver/UltiSnips): Snippets utility that integrates with Deoplete
+* Language support
+  * [deoplete-fish](https://github.com/ponko2/deoplete-fish): Deoplete source for Fish scripts
+  * [haskell-vim](https://github.com/neovimhaskell/haskell-vim): Syntax highlighting and indentation for Haskell and Cabal
+  * [neco-vim](https://github.com/Shougo/neco-vim): Deoplete source for Vim scripts
+  * [vim-fish](https://github.com/dag/vim-fish): Syntax highlighting etc. for Fish scripts
+  * [vim-javascript](https://github.com/pangloss/vim-javascript): Syntax highlighting and improved indentation for JS
   * [vim-puppet](https://github.com/rodjek/vim-puppet): Niceties for working with Puppet files
-  * [vim-snippets](https://github.com/honza/vim-snippets): Large collection of snippets for use with UtilSnips
-  * Haskell specific
-    * [haskell-vim](https://github.com/neovimhaskell/haskell-vim): Syntax highlighting and indentation for Haskell and Cabal
-    * [intero-neovim](https://github.com/parsonsmatt/intero-neovim): A neovim plugin for [Intero](https://commercialhaskell.github.io/intero/), forked from ghcmod-vim.
-    * [neco-ghc](https://github.com/eagletmt/neco-ghc): A completion plugin for Haskell, using ghc-mod
-    * [vim-hintent](https://github.com/alx741/vim-hindent): Integrates with [hindent](https://github.com/chrisdone/hindent) so every time you save a Haskell source file it gets automatically prettified
-    * [vim-stylishask](https://github.com/alx741/vim-stylishask): Integrates with [stylish-haskell](https://github.com/jaspervdj/stylish-haskell) so every time you save a Haskell source file it gets automatically prettified
+  * [yats.vim](https://github.com/HerringtonDarkholme/yats.vim): Syntax highlighting for TypeScript
 * Writing/Markdown
   * [goyo.vim](https://github.com/junegunn/goyo.vim): Distraction-free writing mode for Vim
   * [vim-markdown](https://github.com/gabrielelana/vim-markdown): Markdown vim mode
-  * [vim-pencil](https://github.com/reedes/vim-pencil): For better navigation with soft linebreaks, and other nice things for writing.
+  * [tabular](https://github.com/godlygeek/tabular): For text filtering and alignment
+  * [vim-pencil](https://github.com/reedes/vim-pencil): For better navigation with soft linebreaks, and other nice things for writing
 
-# Installation instructions
+# Setup instructions
 
-## Requirements
-In order for the Haskell plugins to work correctly [stack](https://docs.haskellstack.org/en/stable/README/) must be installed. (We're using `--resolver lts-9.21` since one of the packages we need to install isn't on the current lts.)
-```bash
-curl -sSL https://get.haskellstack.org/ | sh
-stack setup --resolver lts-9.21
-```
-
-Additionlly, the following packages must be installed using `stack`:
-```bash
-stack install ghc-mod hlint hindent stylish-haskell
-```
-
-On Ubuntu 16.04 the intero-neovim also requires an additional dependency:
-```bash
-sudo apt install libtinfo-dev
-```
-
-Finally the deoplete.nvim plugin requires the `neovim` Python 3 package.
+## Dependencies
+* The config expects a terminal emulator with truecolor support. I use [`kitty`](https://sw.kovidgoyal.net/kitty/).
+* Some of the aesthetic touches make use of [NerdFont](https://nerdfonts.com). My preferred font is [FiraCode](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode).
+* Both the denite.nvim and deoplete.nvim plugin requires the `neovim` Python 3 package.
 ```bash
 pip3 install neovim
 ```
@@ -60,14 +54,22 @@ pip3 install neovim
 ## Installation
 Clone this repo to the correct location:
 ```bash
-rm -r ~/.config/nvim
-cd ~/.config
-git clone --recursive https://github.com/malob/nvim.git
+rm -rf ~/.config/nvim
+git clone --recursive https://github.com/malob/nvim.git ~/.config/nvim
 ```
 
-Then open `nvim` and run the `:Helptags` command.
+Then open `nvim` and and run `:Helptags` to update all the help file index and `:UpdateRemotePlugins` to get denite.nvim and deoplete.nvim working.
+```bash
+nvim +Helptags +UpdateRemotePlugins
+```
 
-# Installing and updating plugins
+Finally to get the LanguageClient-neovim up and running run:
+```bash
+~/.config/nvim/bundle/LanguageClient-neovim/install.sh
+```
+(You'll also need to run that every time you update the plugin.)~;
+
+## Installing, updating, and removing plugins
 Plugins are located in the `bundle` folder and are added as `git` submodules. To update all plugins run the following commands:
 ```bash
 cd ~/.config/nvim
@@ -79,3 +81,21 @@ To install a new plugin:
 cd ~/.config/nvim/bundle
 git submodule add [repo url]
 ```
+
+To remove a plugin:
+  * delete the relevent lines from `.gitmodules` and `.git/config`,
+  * run `git rm --cached [plugin_folder]` and `rm -rf [plugin_folder]`,
+  * then commit your changes.
+
+## Tmux replacement setup
+Have a look at the [`tabs-and-panes.vim`] file to understand how the basics of the setup. To really get the most out of it I suggest getting the following tools:
+* [neovim-remote](https://github.com/mhinz/neovim-remote)
+  * This will allow you to open files in `nvim` from the neovim terminal without creating a nested neovim session.
+  * Install it via `pip`: `pip3 install neovim-remote`.
+  * Use `nvr [file]` to open a file from inside and neovim terminal.
+  * It's a pretty powerful tool, so I recommend having a look `nvr --help` to see what you can do with it.
+* [abduco](https://github.com/martanne/abduco) (or something like it)
+  * This will give you the ability to manage sessions that persist between shell sessions.
+
+## Language Server and Linting Dependencies
+Have a look in [`completion-linting.vim`] for information on dependencies for various language servers and linters/fixers.

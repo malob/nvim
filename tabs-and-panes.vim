@@ -2,12 +2,13 @@
 " TAB AND PANES CONFIG
 " ====================
 
-" Terminal configuration
+" Make using terminal less crazy making
+set autochdir             " automatically change working directory for each buffer
+tnoremap <ESC> <C-\><C-n> " use ESC to enter normal mode in terminal
 augroup neovimTerm " enable signcolumn and line numbers in all buffers except terminal
   au TermOpen * if &buftype == 'terminal' | :set nonumber | :set signcolumn=no | :startinsert | endif
   au BufEnter * if &buftype != 'terminal' | :set number | :set signcolumn=yes | else | :startinsert | endif
 augroup END
-tnoremap <ESC> <C-\><C-n> " use ESC to enter normal mode in terminal
 
 " Tab creation/destruction
 " new tab w/ terminal
@@ -15,9 +16,9 @@ noremap  <silent> <leader>t <ESC>:tabnew +term<CR>
 noremap! <silent> <leader>t <ESC>:tabnew +term<CR>
 tnoremap <silent> <leader>t <C-\><C-n>:tabnew +term<CR>
 " close tab
-noremap  <silent> <leader>q <ESC>:tabclose<CR>
-noremap! <silent> <leader>q <ESC>:tabclose<CR>
-tnoremap <silent> <leader>q <C-\><C-n>:tabclose<CR>
+noremap  <silent> <leader>x <ESC>:tabclose<CR>
+noremap! <silent> <leader>x <ESC>:tabclose<CR>
+tnoremap <silent> <leader>x <C-\><C-n>:tabclose<CR>
 
 " Tab navigation
 " next tab
@@ -39,9 +40,9 @@ noremap  <silent> <leader>_ <ESC>:split +term<CR>
 noremap! <silent> <leader>_ <ESC>:split +term<CR>
 tnoremap <silent> <leader>_ <C-\><C-n>:split +term<CR>
 " close pane
-noremap  <silent> <leader>x <ESC>:q<CR>
-noremap! <silent> <leader>x <ESC>:q<CR>
-tnoremap <silent> <leader>x <C-\><C-n>:q<CR>
+noremap  <silent> <leader>q <ESC>:q<CR>
+noremap! <silent> <leader>q <ESC>:q<CR>
+tnoremap <silent> <leader>q <C-\><C-n>:q<CR>
 
 " Pane navigation
 " move left

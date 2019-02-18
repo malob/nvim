@@ -7,48 +7,39 @@ scriptencoding utf-8
 
 let mapleader = '`'
 set updatetime=100 " number of ms before changes are writted to swp file
-set autochdir      " automatically change working directory for each buffer
 
 " Package manager initialization
 runtime bundle/vim-pathogen/autoload/pathogen.vim " so that Pathogen can live in bundle folder
 execute pathogen#infect()
 filetype plugin indent on
 
-" Setup color scheme
-set termguicolors        " truecolor support
-colorscheme NeoSolarized " modified Solazized theme for better truecolor support
-set background=dark
-
-" UI settings
-set cursorline       " highlight current line
-set linebreak        " soft wraps on words not individual chars
-set noshowmode       " don't show --INSERT-- etc.
-set cmdheight=2      " increase site of cmd area
-
-" Tab behavior
-set expandtab 	 " Convert tabs to spaces
-set tabstop=2
-set shiftwidth=2
-
-" Tabs and panes config
-execute 'source' '~/.config/nvim/tabs-and-panes.vim'
-
-" Disable arrow keys in insert mode
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
-
-" Reload source on save
+" Reload vim source on save
 augroup viminit
   au!
   autocmd bufwritepost *.vim source $MYVIMRC | echom "Reloaded " $MYVIMRC
 augroup END
 
+" Tab key behavior
+set expandtab 	 " Convert tabs to spaces
+set tabstop=2
+set shiftwidth=2
 
-" ==========
-" UI PLUGINS
-" ==========
+
+" ====================
+" UI/APPEARENCE CONFIG
+" ====================
+
+" Setup color scheme
+" https://github.com/icymind/NeoSolarized
+set termguicolors        " truecolor support
+colorscheme NeoSolarized " modified Solazized theme for better truecolor support
+set background=dark      " use dark version of colorscheme
+
+" Other misc basic vim ui config
+set cursorline  " highlight current line
+set linebreak   " soft wraps on words not individual chars
+set noshowmode  " don't show --INSERT-- etc.
+set cmdheight=2 " increase site of cmd area
 
 " Airline statusline
 " https://github.com/vim-airline/vim-airline
@@ -56,67 +47,40 @@ execute 'source' '~/.config/nvim/airline-config.vim'
 
 " GitGutter
 " https://github.com/airblade/vim-gitgutter
-let g:gitgutter_override_sign_column_highlight = 0
-let g:gitgutter_sign_added = '┃'
+let g:gitgutter_override_sign_column_highlight = 0     " make sign column look consistent
+let g:gitgutter_sign_added = '┃'                       " replace default symbols with something nicer
 let g:gitgutter_sign_modified = g:gitgutter_sign_added
 let g:gitgutter_sign_removed = g:gitgutter_sign_added
 
-" vim-javascript syntax highlighting
-" https://github.com/pangloss/vim-javascript
-let g:javascript_plugin_jsdoc = 1
-
 " denite.vim
+" Powerful list searcher
 " https://github.com/Shougo/denite.nvim
 noremap <silent> <leader><space> :Denite source<CR>
 
-" ======================================
-" GENERAL COMPLETION AND LINTING PLUGINS
-" ======================================
+" Tab/pane management configuration to imitate tmux
+execute 'source' '~/.config/nvim/tabs-and-panes.vim'
 
-" ALE asyncronous linter config
-" https://github.com/w0rp/ale
-execute 'source' '~/.config/nvim/ale-config.vim'
 
-" Deoplete autocompletion engine
-" https://github.com/Shougo/deoplete.nvim
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#var('around', {
-\ 'mark_above': '[↑]',
-\ 'mark_below': '[↓]',
-\ 'mark_changes': '[*]',
-\})
+" ==============================
+" COMPLETION/LINTING/FIXING ETC.
+" ==============================
 
-" Echodoc
-" https://github.com/Shougo/echodoc.vim
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'signature'
-
-" LanguageClient
-" https://github.com/autozimu/LanguageClient-neovim
-execute 'source' '~/.config/nvim/language-client.vim'
-
-" Supertap (tab through autocompletions)
-" https://github.com/ervandew/supertab
-let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
-
-" UltiSnips config
-" https://github.com/SirVer/ultisnips
-let g:UltiSnipsExpandTrigger='<C-j>'
-let g:UltiSnipsJumpForwardTrigger='<c-b>'
-let g:UltiSnipsJumpBackwardTrigger='<c-z>'
+execute 'source' '~/.config/nvim/completion-linting.vim'
 
 
 " ===========================
 " WRITING AND MARKDOWN CONFIG
 " ===========================
 
-" vim-markdown config
+" vim-markdown
+" Adds a ton of functionality for Markdown
 " https://github.com/plasticboy/vim-markdown
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_new_list_item_indent = 2
 set conceallevel=2
 
-" vim-pencil config
+" vim-pencil
+" Adds a bunch of really nice features for writing
 " https://github.com/reedes/vim-pencil
 let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
 let g:airline_section_x = '%{PencilMode()}'
@@ -126,12 +90,34 @@ augroup pencil
   autocmd FileType text         call pencil#init()
 augroup END
 
+" tabular
+" Helps vim-markdown with table formatting amoung other things
+" https://github.com/godlygeek/tabular
+"
+" Goyo
+" Distraction free writing mode for vim
+" https://github.com/junegunn/goyo.vim
 
-" ==============
-" HASKELL CONFIG
-" ==============
 
-" haskell-vim config
+" ============================
+" PROGRAMMING LANGUAGE PLUGINS
+" ============================
+
+" vim-javascript
+" Syntax highlighting for js
+" https://github.com/pangloss/vim-javascript
+let g:javascript_plugin_jsdoc = 1
+
+" yats.vim
+" Syntax highlighting for TypeScript
+" https://github.com/herringtondarkholme/yats.vim
+
+" vim-fish
+" Syntax highlighting and a bunch of other stuff for Fish
+" https://github.com/dag/vim-fish
+
+" haskell-vim
+" Syntax highlighting and indentation for Haskell
 " https://github.com/neovimhaskell/haskell-vim.git
 let g:haskell_indent_if = 2
 let g:haskell_indent_case = 2
@@ -142,45 +128,3 @@ let g:haskell_indent_after_bare_where = 2
 let g:haskell_indent_do = 3
 let g:haskell_indent_in = 1
 let g:haskell_indent_guard = 2
-
-" Intero config
-" https://github.com/parsonsmatt/intero-neovim
-let g:intero_start_immediately = 0
-"let g:intero_use_neomake = 0
-"augroup interoMaps
-"  au!
-"  " Maps for intero. Restrict to Haskell buffers so the bindings don't collide.
-"
-"  " Background process and window management
-"  au FileType haskell nnoremap <silent> <leader>is :InteroStart<CR>
-"  au FileType haskell nnoremap <silent> <leader>ik :InteroKill<CR>
-"
-"  " Open intero/GHCi split horizontally
-"  au FileType haskell nnoremap <silent> <leader>io :InteroOpen<CR>
-"  " Open intero/GHCi split vertically
-"  au FileType haskell nnoremap <silent> <leader>iov :InteroOpen<CR><C-W>H
-"  au FileType haskell nnoremap <silent> <leader>ih :InteroHide<CR>
-"
-"  " Reloading (pick one)
-"  " Automatically reload on save
-"  au BufWritePost *.hs InteroReload
-"  " Manually save and reload
-"  au FileType haskell nnoremap <silent> <leader>wr :w \| :InteroReload<CR>
-"
-"  " Load individual modules
-"  au FileType haskell nnoremap <silent> <leader>il :InteroLoadCurrentModule<CR>
-"  au FileType haskell nnoremap <silent> <leader>if :InteroLoadCurrentFile<CR>
-"
-"  " Type-related information
-"  " Heads up! These next two differ from the rest.
-"  au FileType haskell map <silent> <leader>t <Plug>InteroGenericType
-"  au FileType haskell map <silent> <leader>T <Plug>InteroType
-"  au FileType haskell nnoremap <silent> <leader>it :InteroTypeInsert<CR>
-"
-"  " Navigation
-"  au FileType haskell nnoremap <silent> <leader>jd :InteroGoToDef<CR>
-"
-"  " Managing targets
-"  " Prompts you to enter targets (no silent):
-"  au FileType haskell nnoremap <leader>ist :InteroSetTargets<SPACE>
-"augroup END
