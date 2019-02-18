@@ -67,7 +67,7 @@ Finally to get LanguageClient-neovim up and running run:
 ```bash
 ~/.config/nvim/bundle/LanguageClient-neovim/install.sh
 ```
-(You'll also need to run that every time you update the plugin.)~;
+(You'll also need to run that every time you update the plugin.)
 
 ## Installing, updating, and removing plugins
 Plugins are located in the `bundle` folder and are added as `git` submodules. To update all plugins run the following commands:
