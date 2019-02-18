@@ -3,10 +3,10 @@ This is a repo of my [NeoVim](https://neovim.io) config files.
 Notable features include:
 * Configuration to let you basically replace `tmux` with `nvim`.
 * A pretty great setup for coding TypeScript and plain old JS.
-* A bunch of time tools to make writing really nice.
+* A bunch of nice tools to make writing really nice.
 * A bunch of nice aesthetic touches.
 
-Below there I've included a bit of documentation and some setup instructions, but the actual `*.vim` files also contain a lot of documentation.
+Below I've included a bit of documentation and some setup instructions, but the actual `*.vim` files also contain a lot of documentation.
 
 # Plugins
 Plugins are managed using [Pathogen](https://github.com/tpope/vim-pathogen).
@@ -45,7 +45,7 @@ Plugins are managed using [Pathogen](https://github.com/tpope/vim-pathogen).
 
 ## Dependencies
 * The config expects a terminal emulator with truecolor support. I use [`kitty`](https://sw.kovidgoyal.net/kitty/).
-* Some of the aesthetic touches make use of [NerdFont](https://nerdfonts.com). My preferred font is [FiraCode](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode).
+* Some of the aesthetic touches make use of [NerdFont](https://nerdfonts.com) icons. My preferred font is [FiraCode](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode).
 * Both the denite.nvim and deoplete.nvim plugin requires the `neovim` Python 3 package.
 ```bash
 pip3 install neovim
@@ -63,7 +63,7 @@ Then open `nvim` and and run `:Helptags` to update all the help file index and `
 nvim +Helptags +UpdateRemotePlugins
 ```
 
-Finally to get the LanguageClient-neovim up and running run:
+Finally to get LanguageClient-neovim up and running run:
 ```bash
 ~/.config/nvim/bundle/LanguageClient-neovim/install.sh
 ```
@@ -88,12 +88,12 @@ To remove a plugin:
   * then commit your changes.
 
 ## Tmux replacement setup
-Have a look at the [`tabs-and-panes.vim`] file to understand how the basics of the setup. To really get the most out of it I suggest getting the following tools:
+Have a look at the [`tabs-and-panes.vim`] file to understand the basics of the setup. To really get the most out of it I suggest getting the following tools:
 * [neovim-remote](https://github.com/mhinz/neovim-remote)
   * This will allow you to open files in `nvim` from the neovim terminal without creating a nested neovim session.
   * Install it via `pip`: `pip3 install neovim-remote`.
   * Use `nvr [file]` to open a file from inside and neovim terminal.
-  * It's a pretty powerful tool, so I recommend having a look `nvr --help` to see what you can do with it.
+  * It's a pretty powerful tool, so I recommend having a look at `nvr --help` to see what you can do with it.
 * [abduco](https://github.com/martanne/abduco) (or something like it)
   * This will give you the ability to manage sessions that persist between shell sessions.
 
