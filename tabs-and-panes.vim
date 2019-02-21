@@ -48,7 +48,7 @@ tnoremap <silent> <leader>q <C-\><C-n>:q<CR>
 " move left
 noremap  <silent> <leader>h <ESC>:wincmd h<CR>
 noremap! <silent> <leader>h <ESC>:wincmd h<CR>
-tnoremap <silent> <leader>h <C-r><C-n><C-w>h
+tnoremap <silent> <leader>h <C-\><C-n><C-w>h
 " move right
 noremap  <silent> <leader>l <ESC>:wincmd l<CR>
 noremap! <silent> <leader>l <ESC>:wincmd l<CR>
@@ -61,3 +61,9 @@ tnoremap <silent> <leader>k <C-\><C-n><C-w>k
 noremap  <silent> <leader>j <ESC>:wincmd j<CR>
 noremap! <silent> <leader>j <ESC>:wincmd j<CR>
 tnoremap <silent> <leader>j <C-\><C-n><C-w>j
+
+" Close various special panes
+" help
+noremap <silent> <leader>ch :helpclose<CR>
+" preview
+noremap <silent> <leader>cp :pclose<CR>

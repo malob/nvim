@@ -48,6 +48,27 @@ let g:LanguageClient_diagnosticsDisplay = {
   \ },
 \ }
 
+" Automatically invoke hover and highlight on cursor movement
+" https://github.com/autozimu/LanguageClient-neovim/issues/618#issuecomment-424539982
+let g:LanguageClient_hoverPreview = 'Always' " Always show preview window
+
+function! LspMaybeHover(is_running) abort
+  if a:is_running.result
+    call LanguageClient_textDocument_hover()
+  endif
+endfunction
+
+function! LspMaybeHighlight(is_running) abort
+  if a:is_running.result
+    call LanguageClient#textDocument_documentHighlight()
+  endif
+endfunction
+
+augroup lsp_aucommands
+  au!
+  au CursorHold * call LanguageClient#isAlive(function('LspMaybeHover'))
+  au CursorMoved * call LanguageClient#isAlive(function('LspMaybeHighlight'))
+augroup END
 
 "===========
 " ALE CONFIG
@@ -100,6 +121,10 @@ call deoplete#custom#var('around', {
 \ 'mark_changes': '[*]',
 \})
 
+" Use tab to navigate completion menu
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
 " Echodoc
 " Shows function signatures in command area
 " https://github.com/Shougo/echodoc.vim
@@ -113,6 +138,7 @@ let g:echodoc#type = 'signature'
 " deoplete-fish
 " Deoplete completion source for fish files
 " https://github.com/ponko2/deoplete-fish
+
 
 " ==================
 " KEYBOARD SHORTCUTS

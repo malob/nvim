@@ -1,0 +1,18 @@
+{
+  "enableDocs": [
+    "bash",
+    "docker",
+    "fish",
+    "git",
+    "haskell",
+    "homebrew",
+    "http",
+    "javascript",
+    "lua",
+    "markdown",
+    "node",
+    "npm",
+    "typescript"
+  ],
+  "database": "~/.config/nvim/devdocs/database.sqlite"
+}

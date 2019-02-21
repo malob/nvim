@@ -14,6 +14,7 @@ Plugins are managed using [Pathogen](https://github.com/tpope/vim-pathogen).
 ## Included plugins
 * General
   * [denite.nvim](https://github.com/Shougo/denite.nvim): Very powerful search/action tool for all kinds of sources
+  * [devdocs.nvim](https://github.com/iamcco/devdocs.nvim): denite source for devdocs.io
   * [NeoSolarized](https://github.com/icymind/NeoSolarized): A fixed solarized colorscheme for better truecolor support
   * [vim-airline](https://github.com/vim-airline/vim-airline): Statusline
   * [vim-airline-themes](https://github.com/vim-airline/vim-airline-themes): Themes for vim-airline

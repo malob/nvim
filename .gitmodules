@@ -65,3 +65,6 @@
 [submodule "bundle/yats.vim"]
 	path = bundle/yats.vim
 	url = https://github.com/HerringtonDarkholme/yats.vim.git
+[submodule "bundle/devdocs.nvim"]
+	path = bundle/devdocs.nvim
+	url = https://github.com/iamcco/devdocs.nvim.git

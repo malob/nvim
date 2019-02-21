@@ -6,7 +6,9 @@ scriptencoding utf-8
 " ================
 
 let mapleader = '`'
-set updatetime=100 " number of ms before changes are writted to swp file
+let timeouttlen = 2000 " extend timout on leader key
+set updatetime=100     " number of ms before changes are writted to swp file
+set autochdir
 
 " Package manager initialization
 runtime bundle/vim-pathogen/autoload/pathogen.vim " so that Pathogen can live in bundle folder
@@ -56,6 +58,17 @@ let g:gitgutter_sign_removed = g:gitgutter_sign_added
 " Powerful list searcher
 " https://github.com/Shougo/denite.nvim
 noremap <silent> <leader><space> :Denite source<CR>
+noremap <silent> <leader>db  :Denite buffer<CR>
+noremap <silent> <leader>dd  :exec 'Denite -input='.&filetype' devdocs'<CR><CR>
+noremap <silent> <leader>dc  :Denite command<CR>
+noremap <silent> <leader>dh  :Denite help<CR>
+noremap <silent> <leader>dff :Denite file<CR>
+noremap <silent> <leader>dfr :Denite file/rec<CR>
+
+" devdocs.nvim
+" Denite source for devdocs.io
+" https://github.com/iamcco/devdocs.nvim
+let g:devdocs_config = '~/.config/nvim/devdocs/config.json'
 
 " Tab/pane management configuration to imitate tmux
 execute 'source' '~/.config/nvim/tabs-and-panes.vim'
