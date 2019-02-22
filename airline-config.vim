@@ -13,7 +13,7 @@ let g:airline_skip_empty_sections = 1                        " don't show sectio
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#tab_nr_type = 2        " tabs show [number of tabs].[number of splits]
+let g:airline#extensions#tabline#tab_nr_type = 2        " tabs show [number of tab].[number of splits]
 let g:airline#extensions#tabline#show_tab_type = 0      " don't show tab or buffer labels in bar
 let g:airline#extensions#tabline#show_close_button = 0  " don't display close button in top right
 

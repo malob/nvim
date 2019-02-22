@@ -1,14 +1,14 @@
 {
   "enableDocs": [
     "bash",
-    "docker",
-    "fish",
+    "docker~17",
+    "fish~2.7",
     "git",
-    "haskell",
+    "haskell~8",
     "homebrew",
     "http",
     "javascript",
-    "lua",
+    "lua~5.3",
     "markdown",
     "node",
     "npm",

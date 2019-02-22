@@ -3,18 +3,52 @@
 " ====================
 
 " Make using terminal less crazy making
-set autochdir             " automatically change working directory for each buffer
 tnoremap <ESC> <C-\><C-n> " use ESC to enter normal mode in terminal
 augroup neovimTerm " enable signcolumn and line numbers in all buffers except terminal
-  au TermOpen * if &buftype == 'terminal' | :set nonumber | :set signcolumn=no | :startinsert | endif
-  au BufEnter * if &buftype != 'terminal' | :set number | :set signcolumn=yes | else | :startinsert | endif
+  au TermOpen * if &buftype == 'terminal' | :set nonumber | :set signcolumn=no  | :startinsert | endif
+  au BufEnter * if &buftype != 'terminal' | :set number   | :set signcolumn=yes | endif
+  au TabNewEntered * Startify
 augroup END
+
+" Startify
+" Start screen configuration
+" https://github.com/mhinz/vim-startify
+let g:startify_update_oldfiles = 1
+let g:startify_relative_path   = 1
+let g:startify_fortune_use_unicode = 0
+let g:startify_list = [
+\ {'type': 'files',     'header': ['   Recent']   },
+\ {'type': 'bookmarks', 'header': ['   Bookmarks']},
+\ {'type': 'commands',  'header': ['   Commands'] }
+\ ]
+
+let g:startify_bookmarks = [
+\ {'n': '~/.config/nvim/init.vim'},
+\ {'f': '~/.config/fish/config.fish'}
+\ ]
+
+let g:startify_commands = [
+\ {'t': ['Open Terminal',  'term']                       },
+\ {'u': ['Update plugins', 'te ~/.config/nvim/update.sh']},
+\ ]
+
+" vim-choosewin
+" mimic tmux's display-pane feature
+" https://github.com/t9md/vim-choosewin
+nmap - <Plug>(choosewin)
+let g:choosewin_label = "TNSERIAODH"  " alternating on homerow (colemak)
+let g:choosewin_tabline_replace = 0   " turned off since tabs have numbers
+" colors taken from NeoSolarized theme
+let g:choosewin_color_label =         {'gui': ['#719e07', '#fdf6e3', 'bold'], 'cterm': [2 , 15, 'bold']}
+let g:choosewin_color_label_current = {'gui': ['#657b83', '#002b36'],         'cterm': [10, 8 ]        }
+let g:choosewin_color_other =         {'gui': ['#657b83', '#657b83'],         'cterm': [10, 10]        }
+let g:choosewin_color_land =          {'gui': ['#b58900', '#002b36'],         'cterm': [3 , 8 ]        }
 
 " Tab creation/destruction
 " new tab w/ terminal
-noremap  <silent> <leader>t <ESC>:tabnew +term<CR>
-noremap! <silent> <leader>t <ESC>:tabnew +term<CR>
-tnoremap <silent> <leader>t <C-\><C-n>:tabnew +term<CR>
+noremap  <silent> <leader>t <ESC>:tabnew<CR>
+noremap! <silent> <leader>t <ESC>:tabnew<CR>
+tnoremap <silent> <leader>t <C-\><C-n>:tabnew<CR>
 " close tab
 noremap  <silent> <leader>x <ESC>:tabclose<CR>
 noremap! <silent> <leader>x <ESC>:tabclose<CR>

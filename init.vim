@@ -41,7 +41,6 @@ set background=dark      " use dark version of colorscheme
 set cursorline  " highlight current line
 set linebreak   " soft wraps on words not individual chars
 set noshowmode  " don't show --INSERT-- etc.
-set cmdheight=2 " increase site of cmd area
 
 " Airline statusline
 " https://github.com/vim-airline/vim-airline

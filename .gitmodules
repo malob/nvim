@@ -68,3 +68,9 @@
 [submodule "bundle/devdocs.nvim"]
 	path = bundle/devdocs.nvim
 	url = https://github.com/iamcco/devdocs.nvim.git
+[submodule "bundle/vim-startify"]
+	path = bundle/vim-startify
+	url = https://github.com/mhinz/vim-startify.git
+[submodule "bundle/vim-choosewin"]
+	path = bundle/vim-choosewin
+	url = https://github.com/t9md/vim-choosewin.git
