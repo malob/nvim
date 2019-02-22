@@ -86,7 +86,7 @@ Have a look at the [tabs-and-panes.vim](tabs-and-panes.vim) file to understand t
 * [neovim-remote](https://github.com/mhinz/neovim-remote)
   * This will allow you to open files in `nvim` from the neovim terminal without creating a nested neovim session.
   * Install it via `pip`: `pip3 install neovim-remote`.
-  * Use `nvr [file]` to open a file from inside and neovim terminal.
+  * Use `nvr [file]` to open a file from inside the neovim terminal.
   * It's a pretty powerful tool, so I recommend having a look at `nvr --help` to see what you can do with it.
 * [abduco](https://github.com/martanne/abduco)
   * This will give you the ability to manage sessions that persist between shell sessions.
