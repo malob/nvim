@@ -65,17 +65,12 @@ git clone --recursive https://github.com/malob/nvim.git ~/.config/nvim
 
 ## Installing, updating, and removing plugins
 Plugins are located in the `bundle` folder and are added as `git` submodules. To update all plugins run `update.sh`, or simply press `u` on the neovim start screen.
-```bash
-cd ~/.config/nvim
-git submodule update --remote
-```
 
 To install a new plugin:
 ```bash
 cd ~/.config/nvim/bundle
 git submodule add [repo url]
 ```
-
 To remove a plugin:
   * delete the relevent lines from `.gitmodules` and `.git/config`,
   * run `git rm --cached [plugin_folder]` and `rm -rf [plugin_folder]`,
