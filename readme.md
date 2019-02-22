@@ -53,7 +53,7 @@ Plugins are managed using [Pathogen](https://github.com/tpope/vim-pathogen).
 ```bash
 pip3 install neovim
 ```
-* Finally many of the language servers, as well as devdocs-vin require that NPM is installed. (`brew install node` in macOS or `apt install nodejs` in Ubuntu.)
+* Finally many of the language servers, as well as devdocs.vim require that `npm` is installed. (`brew install node` in macOS or `apt install nodejs` in Ubuntu.)
 
 ## Installation
 Clone this repo to the correct location:
