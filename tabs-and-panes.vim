@@ -15,15 +15,17 @@ augroup END
 " https://github.com/mhinz/vim-startify
 let g:startify_update_oldfiles = 1
 let g:startify_relative_path   = 1
-let g:startify_fortune_use_unicode = 0
-let g:startify_list = [
-\ {'type': 'files',     'header': ['   Recent']   },
-\ {'type': 'bookmarks', 'header': ['   Bookmarks']},
-\ {'type': 'commands',  'header': ['   Commands'] }
+let g:startify_fortune_use_unicode = 1
+let g:startify_files_number = 7
+let g:startify_lists = [
+\ {'type': 'files',     'header': ['    🕘  Recent']              },
+\ {'type': 'dir',       'header': ['    🕘  Recent in '. getcwd()]},
+\ {'type': 'bookmarks', 'header': ['    🔖  Bookmarks']          },
+\ {'type': 'commands',  'header': ['    🔧  Commands']            }
 \ ]
 
 let g:startify_bookmarks = [
-\ {'n': '~/.config/nvim/init.vim'},
+\ {'n': '~/.config/nvim/init.vim'   },
 \ {'f': '~/.config/fish/config.fish'}
 \ ]
 
