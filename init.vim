@@ -8,9 +8,9 @@ scriptencoding utf-8
 let mapleader = '`'
 let timeouttlen = 2000 " extend timout on leader key
 set updatetime=100     " number of ms before changes are writted to swp file
-set mouse=a
-set inccommand=nosplit
-set autochdir
+set mouse=a            " enable mouse support for neovim
+set inccommand=nosplit " enable preview while doing find and replace
+set autochdir          " change working dir to dir of file in buffer
 
 " Package manager initialization
 runtime bundle/vim-pathogen/autoload/pathogen.vim " so that Pathogen can live in bundle folder

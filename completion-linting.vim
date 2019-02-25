@@ -12,10 +12,10 @@ scriptencoding utf-8
 " haskell: see https://github.com/haskell/haskell-ide-engine
 " java/typescript: npm i -g typescript-language-server
 " lua: luarocks install --server=http://luarocks.org/dev lua-lsp && luarocks install luacheck lcf
-let g:LanguageClient_loggingFile = expand('~/.config/nvim/LanguageClient.log')
+" let g:LanguageClient_loggingFile = expand('~/.config/nvim/LanguageClient.log')
 let g:LanguageClient_serverCommands = {
 \ 'sh': ['/usr/local/bin/bash-language-server', 'start'],
-\ 'haskell': ['~/.local/bin/hie-8.6.3'],
+\ 'haskell': ['~/.local/bin/hie-8.6.3', '--lsp'],
 \ 'javascript': ['/usr/local/bin/typescript-language-server', '--stdio'],
 \ 'lua': ['/usr/local/bin/lua-lsp'],
 \ 'typescript': ['/usr/local/bin/typescript-language-server', '--stdio'],

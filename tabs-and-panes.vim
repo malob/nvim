@@ -1,3 +1,4 @@
+scriptencoding uft-8
 " ====================
 " TAB AND PANES CONFIG
 " ====================
@@ -20,7 +21,7 @@ let g:startify_files_number = 7
 let g:startify_lists = [
 \ {'type': 'files',     'header': ['    🕘  Recent']              },
 \ {'type': 'dir',       'header': ['    🕘  Recent in '. getcwd()]},
-\ {'type': 'bookmarks', 'header': ['    🔖  Bookmarks']          },
+\ {'type': 'bookmarks', 'header': ['    🔖  Bookmarks']           },
 \ {'type': 'commands',  'header': ['    🔧  Commands']            }
 \ ]
 
@@ -38,7 +39,7 @@ let g:startify_commands = [
 " mimic tmux's display-pane feature
 " https://github.com/t9md/vim-choosewin
 nmap - <Plug>(choosewin)
-let g:choosewin_label = "TNSERIAODH"  " alternating on homerow (colemak)
+let g:choosewin_label = 'TNERIAODH'   " alternating on homerow (colemak) 'S' is left out on purpose since it's used by choosewin
 let g:choosewin_tabline_replace = 0   " turned off since tabs have numbers
 " colors taken from NeoSolarized theme
 let g:choosewin_color_label =         {'gui': ['#719e07', '#fdf6e3', 'bold'], 'cterm': [2 , 15, 'bold']}
