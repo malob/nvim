@@ -12,40 +12,41 @@ scriptencoding utf-8
 " haskell: see https://github.com/haskell/haskell-ide-engine
 " java/typescript: npm i -g typescript-language-server
 " lua: luarocks install --server=http://luarocks.org/dev lua-lsp && luarocks install luacheck lcf
+let g:LanguageClient_loggingFile = expand('~/.config/nvim/LanguageClient.log')
 let g:LanguageClient_serverCommands = {
-  \ 'sh': ['/usr/local/bin/bash-language-server', 'start'],
-  \ 'haskell': ['~/.local/bin/hie-wrapper'],
-  \ 'javascript': ['/usr/local/bin/typescript-language-server', '--stdio'],
-  \ 'lua': ['/usr/local/bin/lua-lsp'],
-  \ 'typescript': ['/usr/local/bin/typescript-language-server', '--stdio'],
+\ 'sh': ['/usr/local/bin/bash-language-server', 'start'],
+\ 'haskell': ['~/.local/bin/hie-8.6.3'],
+\ 'javascript': ['/usr/local/bin/typescript-language-server', '--stdio'],
+\ 'lua': ['/usr/local/bin/lua-lsp'],
+\ 'typescript': ['/usr/local/bin/typescript-language-server', '--stdio'],
 \ }
 
 " Customize symbols
 let g:LanguageClient_diagnosticsDisplay = {
-  \ 1: {
-  \     'name': 'Error',
-  \     'texthl': 'ALEError',
-  \     'signText': '',
-  \     'signTexthl': 'ALEErrorSign',
-  \ },
-  \ 2:  {
-  \     'name': 'Warning',
-  \     'texthl': 'ALEWarning',
-  \     'signText': '',
-  \     'signTexthl': 'ALEWarningSign',
-  \ },
-  \ 3:  {
-  \     'name': 'Information',
-  \     'texthl': 'ALEInfo',
-  \     'signText': '\uF05A',
-  \     'signTexthl': 'ALEInfoSign',
-  \ },
-  \ 4:  {
-  \     'name': 'Hint',
-  \     'texthl': 'ALEInfo',
-  \     'signText': '➤',
-  \     'signTexthl': 'ALEInfoSign',
-  \ },
+\ 1: {
+\     'name': 'Error',
+\     'texthl': 'ALEError',
+\     'signText': '',
+\     'signTexthl': 'ALEErrorSign',
+\ },
+\ 2:  {
+\     'name': 'Warning',
+\     'texthl': 'ALEWarning',
+\     'signText': '',
+\     'signTexthl': 'ALEWarningSign',
+\ },
+\ 3:  {
+\     'name': 'Information',
+\     'texthl': 'ALEInfo',
+\     'signText': '\uF05A',
+\     'signTexthl': 'ALEInfoSign',
+\ },
+\ 4:  {
+\     'name': 'Hint',
+\     'texthl': 'ALEInfo',
+\     'signText': '➤',
+\     'signTexthl': 'ALEInfoSign',
+\ },
 \ }
 
 " Automatically invoke hover and highlight on cursor movement
@@ -84,19 +85,19 @@ augroup END
 
 " Disable linters for filetypes with language servers
 let g:ale_linters = {
-  \ 'sh': [],
-  \ 'haskell': [],
-  \ 'javascript': [],
-  \ 'lua': [],
-  \ 'typescript': []
+\ 'sh': [],
+\ 'haskell': [],
+\ 'javascript': [],
+\ 'lua': [],
+\ 'typescript': []
 \ }
 
 " Enable some fixers
 let g:ale_fixers = {
-  \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-  \ 'javascript': ['prettier-eslint'],
-  \ 'json': ['prettier'],
-  \ 'puppet': ['puppetlint']
+\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'javascript': ['prettier-eslint'],
+\ 'json': ['prettier'],
+\ 'puppet': ['puppetlint']
 \ }
 let g:ale_fix_on_save = 1
 
@@ -119,7 +120,7 @@ call deoplete#custom#var('around', {
 \ 'mark_above': '[↑]',
 \ 'mark_below': '[↓]',
 \ 'mark_changes': '[*]',
-\})
+\ })
 
 " Use tab to navigate completion menu
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
