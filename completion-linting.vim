@@ -15,10 +15,13 @@ scriptencoding utf-8
 " let g:LanguageClient_loggingFile = expand('~/.config/nvim/LanguageClient.log')
 let g:LanguageClient_serverCommands = {
 \ 'sh': ['/usr/local/bin/bash-language-server', 'start'],
-\ 'haskell': ['~/.local/bin/hie-8.6.3', '--lsp'],
+\ 'haskell': ['hie-wrapper'],
 \ 'javascript': ['/usr/local/bin/typescript-language-server', '--stdio'],
 \ 'lua': ['/usr/local/bin/lua-lsp'],
 \ 'typescript': ['/usr/local/bin/typescript-language-server', '--stdio'],
+\ }
+let g:LanguageClient_rootMarkers = {
+\ 'haskell': ['*.cabal', 'stack.yaml'],
 \ }
 
 " Customize symbols
