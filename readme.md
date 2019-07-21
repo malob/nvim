@@ -1,4 +1,4 @@
-(I don't use this repo for my Neovim configuration now that I have switched to Nix. You can now find my configuration here: https://github.com/malob/nixpkgs/blob/master/overlays/neovim-config.vim)
+(I don't use this repo for my Neovim configuration now that I have switched to Nix. You can now find my configuration here: https://github.com/malob/nixpkgs/tree/master/configs/nvim)
 
 This is a repo of my [NeoVim](https://neovim.io) config files.
 
